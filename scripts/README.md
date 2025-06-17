@@ -1,47 +1,69 @@
-# Scripts de Automação – CEAC Inteligente
+# CEAC Inteligente – Scripts de Automação
 
-Este diretório contém os scripts `.bat` que automatizam tarefas de desenvolvimento e manutenção do projeto CEAC Inteligente. Eles foram criados para facilitar a configuração, execução e versionamento do projeto de forma rápida e padronizada.
+Este diretório contém scripts `.bat` que automatizam tarefas essenciais no desenvolvimento e manutenção do projeto CEAC Inteligente. Eles foram criados para facilitar a configuração, execução e versionamento do projeto de maneira rápida e padronizada.
 
-## 🧰 Scripts disponíveis
+## Scripts disponíveis
 
-### 1. `ceac-setup-completo.bat`
-Cria toda a estrutura do projeto CEAC, instala dependências, configura venv, prepara o frontend e gera automaticamente os outros arquivos `.bat` de execução e parada. Ideal para rodar logo após clonar o projeto.
+### ceac-setup-completo.bat  
+Cria toda a estrutura do projeto CEAC, instala dependências, configura o ambiente virtual (`venv`), prepara o frontend e gera automaticamente outros scripts de execução e parada.  
+Local: Raiz do projeto (fora de `/scripts`).  
 
-> 📌 Local: Raiz do projeto (fora de `/scripts`)
+### executar_ceac.bat  
+Inicia dois terminais separados, um para o backend (FastAPI com Uvicorn) e outro para o frontend (React com Vite).  
+Backend: `http://localhost:8000`  
+Frontend: `http://localhost:5173`  
 
----
+### parar-ceac.bat  
+Finaliza os serviços do backend (`python.exe`) e do frontend (`node.exe`) se estiverem em execução.  
+Método: Utiliza `taskkill /F /IM ...` internamente.  
 
-### 2. `executar_ceac.bat`
-Inicia **dois terminais separados**, um para o backend (FastAPI com Uvicorn) e outro para o frontend (React com Vite).
+### git-push-ceac-com-log.bat  
+Realiza commit e push com:  
+- Mensagem customizada + data/hora  
+- Registro automático em `git_push.log`  
+- Configuração do remote `origin main` na primeira execução  
+Extra: Gera um atalho com ícone personalizado na área de trabalho, chamado `Push CEAC`.  
 
-> Porta backend: `http://localhost:8000`  
-> Porta frontend: `http://localhost:5173`
+## Estrutura de diretórios material-apresentacao  
 
----
+Este conjunto de scripts cria automaticamente uma estrutura organizada de pastas para facilitar a gestão do projeto. A organização fica assim:  
 
-### 3. `parar-ceac.bat`
-Finaliza os serviços do backend (`python.exe`) e do frontend (`node.exe`) se estiverem em execução.
+material-apresentacao
+│── docs
+│   ├── CEAC-Documentacao-Tecnica.pdf
+│   ├── CEAC-Apresentacao-Institucional.pdf
+│   ├── roteiro-pitch-ceac.docx
+│   ├── tutorial-acessibilidade.md
+│   ├── ...
+│── presentation
+│   ├── CEAC-Arquitetura-Tecnica-Animada.pptx
+│── qrcodes
+│   ├── qr-release-download.png
+│   ├── qr-video-acessibilidade.png
+│── videos
+│   ├── tutorial-acessibilidade-ceac.mp4
+│── diagrams
+│   ├── ceac-arquitetura-3tier.svg
+│   ├── ceac-arquitetura-hexagonal.svg
 
-> Utiliza `taskkill /F /IM ...` internamente
+Todos os arquivos acima são criados automaticamente pelos scripts. Se necessário, ajuste os nomes dos arquivos de acordo com a evolução do projeto.  
 
----
+## Como executar os scripts  
 
-### 4. `git-push-ceac-com-log.bat`
-Faz commit e push com:
+Os scripts podem ser executados de duas maneiras:  
 
-- Mensagem customizada + data/hora
-- Registro automático em `git_push.log`
-- Configura o remote `origin main` na primeira execução
+### Via duplo clique  
+Basta clicar duas vezes sobre o arquivo `.bat` desejado.  
 
-Cria também um **atalho com ícone personalizado** na área de trabalho, com o nome `Push CEAC`.
+### Via terminal  
+Abra o `cmd` e digite:  
 
----
-
-## 🗂️ Como rodar os scripts
-
-- Execute com duplo clique, ou
-- Pelo terminal (`cmd`) com:
-
-```cmd
 cd scripts
 nome-do-script.bat
+
+## Observações importantes  
+- Certifique-se de executar os scripts dentro da raiz correta do projeto.  
+- Modifique os arquivos conforme necessário para personalizar sua experiência.  
+- Caso algum script precise de permissões administrativas, execute-o como Administrador.  
+
+Agora, seu ambiente CEAC Inteligente está pronto para desenvolvimento.
