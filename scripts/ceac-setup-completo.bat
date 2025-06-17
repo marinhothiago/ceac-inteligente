@@ -1,7 +1,7 @@
 @echo off
 cd /d %~dp0
 
-set "ROOT=ceac-inteligente"
+set "ROOT=../ceac-inteligente"
 echo Verificando requisitos do sistema...
 
 where python >nul 2>nul || (
@@ -69,14 +69,14 @@ if not exist node_modules (
     npm init -y >nul
     npm install vite react react-dom
 )
-cd ..\..
+cd ../..
 
 echo Criando scripts auxiliares...
 
 > %ROOT%\executar_ceac.bat (
     echo @echo off
     echo cd /d %%~dp0
-    echo start cmd /k "cd backend ^&^& ..\venv\Scripts\activate.bat ^&^& uvicorn main:app --reload"
+    echo start cmd /k "cd backend ^&^& call ..\venv\Scripts\activate.bat ^&^& uvicorn main:app --reload"
     echo start cmd /k "cd frontend ^&^& npm run dev"
     echo echo Servicos iniciados. Backend na porta 8000, frontend na 5173.
     echo pause
